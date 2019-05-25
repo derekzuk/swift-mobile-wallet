@@ -11,6 +11,7 @@
 		028FA36B2291E01500CE198B /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36A2291E01500CE198B /* TransactionViewController.swift */; };
 		028FA36D2291E19A00CE198B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36C2291E19A00CE198B /* Transaction.swift */; };
 		028FA37422988AB900CE198B /* TransactionFromApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA37322988AB900CE198B /* TransactionFromApi.swift */; };
+		028FA37B22999EF500CE198B /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA37A22999EF500CE198B /* Transfer.swift */; };
 		02B5C88222887C9700B3C991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5C88122887C9700B3C991 /* AppDelegate.swift */; };
 		02B5C88722887C9700B3C991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B5C88522887C9700B3C991 /* Main.storyboard */; };
 		02B5C88922887C9800B3C991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02B5C88822887C9800B3C991 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		028FA36A2291E01500CE198B /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		028FA36C2291E19A00CE198B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		028FA37322988AB900CE198B /* TransactionFromApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFromApi.swift; sourceTree = "<group>"; };
+		028FA37A22999EF500CE198B /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		02B5C87E22887C9700B3C991 /* swift-mobile-wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-mobile-wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B5C88122887C9700B3C991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B5C88622887C9700B3C991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				028FA37322988AB900CE198B /* TransactionFromApi.swift */,
+				028FA37A22999EF500CE198B /* Transfer.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				028FA3692291DF9300CE198B /* TransactionTableViewCell.swift in Sources */,
 				028FA37422988AB900CE198B /* TransactionFromApi.swift in Sources */,
 				02B5C88222887C9700B3C991 /* AppDelegate.swift in Sources */,
+				028FA37B22999EF500CE198B /* Transfer.swift in Sources */,
 				028FA36D2291E19A00CE198B /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

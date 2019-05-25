@@ -150,7 +150,37 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let transactionsArray = json["transactions"] as! [[String: Any]]
                 for transaction in transactionsArray {
+                    print("transaction: ")
                     print(transaction)
+                    print(" ")
+                    
+                    var transfersArray = [Transfer]()
+                    let transferArray = transaction["transfers"] as! [[String: Any]]
+                    for transfer in transferArray {
+                        print("transfer: ")
+                        print(transfer)
+                        print(" ")
+                        var transfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
+                        transfersArray.append(transfer)
+                    }
+                    
+                    let transactionExtracted = transaction["hash"] as! String
+                    print("transactionExtracted: ")
+                    print(transactionExtracted)
+                    print(" ")
+                    
+                    
+                    
+                    var transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
+                                                                unlockTime: transaction["unlockTime"] as! Int,
+                                                                paymentId: transaction["paymentId"] as? String ?? "",
+                                                                timestamp: transaction["timestamp"] as! Int,
+                                                                blockHeight: transaction["blockHeight"] as! Int,
+                                                                transfers: transfersArray,
+                                                                isCoinbaseTransaction: transaction["isCoinbaseTransaction"] as! Bool,
+                                                                fee: transaction["fee"] as! Int)
+                    print(transactionFromApi.description)
+                    print(" ")
                 }
             } catch {
                 print(error)
@@ -178,7 +208,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self.addresses = json["addresses"] as! [String]
+                print("self.addresses: ")
                 print(self.addresses)
+                print(" ")
             } catch {
                 print(error)
             }
