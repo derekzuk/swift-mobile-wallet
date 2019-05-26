@@ -30,10 +30,13 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
 
-        retrieveTransactionsFromApi()
-        retrieveAddresses()
+        // We check that the wallet is open first before populating transactions
+        openWallet(completion: {() in
+            self.retrieveTransactionsFromApi()
+            self.retrieveAddresses()
+        })
         
-        loadTransactions()
+        loadTestTransactions()
     }
     
     // MARK: - Table view data source
@@ -112,7 +115,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: Private Methods
     
-    private func loadTransactions() {
+    private func loadTestTransactions() {
         guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, address: "1908clkcn02dj") else {
             fatalError("Unable to instantiate transaction1")
         }
@@ -126,6 +129,25 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         transactions += [transaction1, transaction2, transaction3]
+    }
+    
+    private func openWallet(completion: @escaping () -> Void) {
+        let urlString = "http://127.0.0.1:8070/wallet/open"
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(url: url! as URL)
+        request.setValue("password", forHTTPHeaderField: "X-API-KEY")
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        
+        session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if error != nil {
+                print(error ?? "Error encountered printing the error")
+                return
+            }
+            
+            completion()
+        }.resume()
     }
     
     private func retrieveTransactionsFromApi() {
@@ -189,6 +211,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                     print(transactionFromApi.description)
                     print(" ")
 
+                    // reloadData() must be dispatched from the main thread
                     DispatchQueue.main.async {
                         self.transactionTableView.reloadData()
                     }
