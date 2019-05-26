@@ -112,6 +112,12 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func settings(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func refresh(_ sender: UIBarButtonItem) {
+    }
+    
     
     //MARK: Private Methods
     

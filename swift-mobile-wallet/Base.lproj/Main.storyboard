@@ -77,6 +77,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="rni-iL-7vT" kind="show" id="rGA-hp-8R6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -86,8 +89,16 @@
                         <viewLayoutGuide key="safeArea" id="T61-Cf-EfP"/>
                     </view>
                     <navigationItem key="navigationItem" title="TRTL Wallet" id="LmM-nt-PXX">
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="FXl-0r-3cF"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="YtT-FB-Btm"/>
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="FXl-0r-3cF">
+                            <connections>
+                                <action selector="refresh:" destination="g18-6G-Toz" id="8IH-Lx-dNs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="YtT-FB-Btm">
+                            <connections>
+                                <action selector="settings:" destination="g18-6G-Toz" id="cLv-ci-FmQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="transactionTableView" destination="jBe-z1-kfR" id="jdx-DA-lPL"/>
@@ -96,6 +107,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pW-qu-khT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="163.768115942029" y="-1060.5978260869565"/>
+        </scene>
+        <!--Send-->
+        <scene sceneID="aD8-ec-ULs">
+            <objects>
+                <viewController id="u5b-Pv-Hrx" customClass="SendViewController" customModule="swift_mobile_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ojb-VP-mrX" customClass="Send">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gLY-DL-Qgj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Send" id="Gm6-4X-xtL">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="TDr-Iw-0A7">
+                            <connections>
+                                <action selector="cancel:" destination="u5b-Pv-Hrx" id="VX6-14-0Tf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="TF9-33-Dv7">
+                            <connections>
+                                <action selector="camera:" destination="u5b-Pv-Hrx" id="gSA-D8-dio"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="owL-r3-i70" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2144.927536231884" y="-1061.413043478261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ph1-Ls-yOo">
@@ -114,6 +152,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cS1-ZZ-8cX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-742.02898550724649" y="-1060.5978260869565"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FJK-Tz-o5N">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rni-iL-7vT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BGa-j6-Mnb">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="u5b-Pv-Hrx" kind="relationship" relationship="rootViewController" id="4fF-AZ-Smi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N2C-iN-q09" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1237.68115942029" y="-1061.413043478261"/>
         </scene>
     </scenes>
 </document>
