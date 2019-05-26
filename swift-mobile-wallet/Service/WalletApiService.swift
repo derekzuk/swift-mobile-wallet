@@ -51,7 +51,8 @@ class WalletApiService {
                         
                         let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
                                                                 photo: self.photo1,
-                                                                address: transfer["address"] as! String)
+                                                                address: transfer["address"] as! String,
+                                                                timestamp: transaction["timestamp"] as! Int)
                         print("transactionForDisplay!: ")
                         print(transactionForDisplay!)
                         print("")

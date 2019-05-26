@@ -36,7 +36,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             self.retrieveAddresses()
         })
         
-        loadTestTransactions()
+//        loadTestTransactions()
     }
     
     // MARK: - Table view data source
@@ -46,7 +46,6 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return transactions.count
     }
 
@@ -116,21 +115,22 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func refresh(_ sender: UIBarButtonItem) {
+        retrieveTransactionsFromApi()
     }
     
     
     //MARK: Private Methods
     
     private func loadTestTransactions() {
-        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, address: "1908clkcn02dj") else {
+        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, address: "1908clkcn02dj", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction1")
         }
         
-        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, address: "cms93jcls832") else {
+        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, address: "cms93jcls832", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction2")
         }
         
-        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, address: "ck83nclls8") else {
+        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, address: "ck83nclls8", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction3")
         }
         
@@ -177,35 +177,24 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let transactionsArray = json["transactions"] as! [[String: Any]]
                 for transaction in transactionsArray {
-                    print("transaction: ")
-                    print(transaction)
-                    print(" ")
-                    
                     var transfersArray = [Transfer]()
                     let transferArray = transaction["transfers"] as! [[String: Any]]
                     for transfer in transferArray {
-                        print("transfer: ")
-                        print(transfer)
-                        print(" ")
                         let newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
                         transfersArray.append(newTransfer)
 
                         let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
                                                                 photo: self.photo1,
-                                                                address: transfer["address"] as! String)
-                        print("transactionForDisplay!: ")
-                        print(transactionForDisplay!)
-                        print("")
-                        self.transactions.append(transactionForDisplay!)
+                                                                address: transfer["address"] as! String,
+                                                                timestamp: transaction["timestamp"] as! Int)
+                        // We only add the transaction if it is not already contained in the transaction array
+                        if (!self.transactions.contains(transactionForDisplay!)) {
+                            self.transactions.append(transactionForDisplay!)
+                        }
                     }
                     
                     let transactionExtracted = transaction["hash"] as! String
-                    print("transactionExtracted: ")
-                    print(transactionExtracted)
-                    print(" ")
-                    
-                    
-                    
+
                     let transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
                                                                 unlockTime: transaction["unlockTime"] as! Int,
                                                                 paymentId: transaction["paymentId"] as? String ?? "",
@@ -214,9 +203,6 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                                                                 transfers: transfersArray,
                                                                 isCoinbaseTransaction: transaction["isCoinbaseTransaction"] as! Bool,
                                                                 fee: transaction["fee"] as! Int)
-                    print(transactionFromApi.description)
-                    print(" ")
-
                     // reloadData() must be dispatched from the main thread
                     DispatchQueue.main.async {
                         self.transactionTableView.reloadData()
@@ -248,9 +234,6 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self.addresses = json["addresses"] as! [String]
-                print("self.addresses: ")
-                print(self.addresses)
-                print(" ")
             } catch {
                 print(error)
             }

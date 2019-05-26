@@ -115,6 +115,16 @@
                     <view key="view" contentMode="scaleToFill" id="ojb-VP-mrX" customClass="Send">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9M-tr-VMp">
+                                <rect key="frame" x="20" y="107" width="374" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendButtonClick:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="Xim-Bf-ghq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gLY-DL-Qgj"/>
                     </view>
@@ -133,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owL-r3-i70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2144.927536231884" y="-1061.413043478261"/>
+            <point key="canvasLocation" x="2143.4782608695655" y="-1061.413043478261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ph1-Ls-yOo">
