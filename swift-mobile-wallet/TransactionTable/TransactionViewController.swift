@@ -11,9 +11,6 @@ import JavaScriptCore
 
 class TransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // TODO: We can maybe just use the etherscan API to make something interesting
-    // https://etherscan.io/apis#accounts
-    
     // MARK: Properties
     @IBOutlet weak var transactionTableView: UITableView!
     
@@ -32,7 +29,18 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
 
         // We check that the wallet is open first before populating transactions
         openWallet(completion: {() in
-            self.retrieveTransactionsFromApi()
+            self.retrieveTransactionsFromApi(completion: {() in
+                // Reorder list
+                self.transactions.sort(by: { (t1, t2) -> Bool in
+                    return t1.timestamp > t2.timestamp
+                })
+                // reloadData() must be dispatched from the main thread
+                DispatchQueue.main.async {
+                    self.transactionTableView.reloadData()
+                }
+            })
+            
+            // TODO: this is not necessary at the moment
             self.retrieveAddresses()
         })
         
@@ -115,7 +123,16 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func refresh(_ sender: UIBarButtonItem) {
-        retrieveTransactionsFromApi()
+        retrieveTransactionsFromApi(completion: {() in
+            // Reorder list
+            self.transactions.sort(by: { (t1, t2) -> Bool in
+                return t1.timestamp > t2.timestamp
+            })
+            // reloadData() must be dispatched from the main thread
+            DispatchQueue.main.async {
+                self.transactionTableView.reloadData()
+            }
+        })
     }
     
     
@@ -156,7 +173,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         }.resume()
     }
     
-    private func retrieveTransactionsFromApi() {
+    private func retrieveTransactionsFromApi(completion: @escaping () -> Void) {
         let urlString = "http://127.0.0.1:8070/transactions"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
@@ -203,14 +220,12 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                                                                 transfers: transfersArray,
                                                                 isCoinbaseTransaction: transaction["isCoinbaseTransaction"] as! Bool,
                                                                 fee: transaction["fee"] as! Int)
-                    // reloadData() must be dispatched from the main thread
-                    DispatchQueue.main.async {
-                        self.transactionTableView.reloadData()
-                    }
                 }
             } catch {
                 print(error)
             }
+            
+            completion()
         }.resume()
     }
     

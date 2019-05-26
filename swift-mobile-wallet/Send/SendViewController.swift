@@ -44,7 +44,7 @@ class SendViewController: UIViewController {
     private func sendSimple() {
         // prepare json data
         let json: [String: Any] = [  "destination": "TRTLuzJzyboDALnqwsQMt6DGW665JsYFnHgECQo6rcWuQZNZ5dtY5zTGUnHHcp7tdeKErjgWvrwTGZccRm35AiAhWaveSRCstpW",
-                                     "amount": 123]
+                                    "amount": 11]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
