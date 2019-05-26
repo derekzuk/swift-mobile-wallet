@@ -20,6 +20,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     var transactions = [Transaction]()
     var transactionsFromApi = [TransactionFromApi]()
     var addresses = [String]()
+    let photo1 = UIImage(named: "sendImage")
+    let photo2 = UIImage(named: "receiveImage")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +30,10 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
 
-        loadTransactions()
-        
         retrieveTransactionsFromApi()
         retrieveAddresses()
+        
+        loadTransactions()
     }
     
     // MARK: - Table view data source
@@ -56,7 +58,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         // Fetches the appropriate meal for the data source layout.
         let transaction = transactions[indexPath.row]
         
-        cell.quantityLabel.text = transaction.quantity
+        cell.quantityLabel.text = String(transaction.amount)
         cell.transactionImage.image = transaction.photo
         cell.addressLabel.text = transaction.address
         
@@ -111,18 +113,15 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: Private Methods
     
     private func loadTransactions() {
-        let photo1 = UIImage(named: "sendImage")
-        let photo2 = UIImage(named: "receiveImage")
-        
-        guard let transaction1 = Transaction(quantity: "283719", photo: photo1, address: "1908clkcn02dj") else {
+        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, address: "1908clkcn02dj") else {
             fatalError("Unable to instantiate transaction1")
         }
         
-        guard let transaction2 = Transaction(quantity: "131", photo: photo2, address: "cms93jcls832") else {
+        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, address: "cms93jcls832") else {
             fatalError("Unable to instantiate transaction2")
         }
         
-        guard let transaction3 = Transaction(quantity: "91239", photo: photo1, address: "ck83nclls8") else {
+        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, address: "ck83nclls8") else {
             fatalError("Unable to instantiate transaction3")
         }
         
@@ -160,8 +159,16 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                         print("transfer: ")
                         print(transfer)
                         print(" ")
-                        var transfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
-                        transfersArray.append(transfer)
+                        var newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
+                        transfersArray.append(newTransfer)
+
+                        var transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
+                                                                photo: self.photo1,
+                                                                address: transfer["address"] as! String)
+                        print("transactionForDisplay!: ")
+                        print(transactionForDisplay!)
+                        print("")
+                        self.transactions.append(transactionForDisplay!)
                     }
                     
                     let transactionExtracted = transaction["hash"] as! String
@@ -181,6 +188,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                                                                 fee: transaction["fee"] as! Int)
                     print(transactionFromApi.description)
                     print(" ")
+
+                    // TODO: UITableView.reloadData() must be used from main thread only
+//                    self.transactionTableView.reloadData()
                 }
             } catch {
                 print(error)

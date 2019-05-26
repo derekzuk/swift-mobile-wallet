@@ -12,28 +12,23 @@ class Transaction {
     
     //MARK: Properties
     
-    var quantity: String
+    var amount: Int
     var photo: UIImage?
     var address: String
     
     //MARK: Initialization
     
-    init?(quantity: String, photo: UIImage?, address: String) {
-        // Initialization should fail if there is no quantity or address
-        // The name must not be empty
-        guard !quantity.isEmpty else {
-            return nil
-        }
-        
+    init?(amount: Int, photo: UIImage?, address: String) {
+        // Initialization should fail if there is no address
         // The address must not be empty
         guard !address.isEmpty else {
             return nil
         }
         
         // Initialize stored properties.
-        self.quantity = quantity
+        self.amount = amount
         self.photo = photo
         self.address = address
-    }    
+    }
     
 }
