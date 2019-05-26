@@ -159,10 +159,10 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                         print("transfer: ")
                         print(transfer)
                         print(" ")
-                        var newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
+                        let newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
                         transfersArray.append(newTransfer)
 
-                        var transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
+                        let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
                                                                 photo: self.photo1,
                                                                 address: transfer["address"] as! String)
                         print("transactionForDisplay!: ")
@@ -178,7 +178,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     
                     
-                    var transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
+                    let transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
                                                                 unlockTime: transaction["unlockTime"] as! Int,
                                                                 paymentId: transaction["paymentId"] as? String ?? "",
                                                                 timestamp: transaction["timestamp"] as! Int,
@@ -189,8 +189,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                     print(transactionFromApi.description)
                     print(" ")
 
-                    // TODO: UITableView.reloadData() must be used from main thread only
-//                    self.transactionTableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.transactionTableView.reloadData()
+                    }
                 }
             } catch {
                 print(error)
