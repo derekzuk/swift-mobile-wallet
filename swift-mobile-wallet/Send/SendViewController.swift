@@ -11,8 +11,9 @@ import UIKit
 class SendViewController: UIViewController {
     
     // MARK: Properties
+    @IBOutlet weak var trtlAddress: UITextField!
+    @IBOutlet weak var usdAmountLabel: UILabel!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +39,32 @@ class SendViewController: UIViewController {
         print("clicked Send button")
         sendSimple()
     }
+    
+    @IBAction func button0(_ sender: UIButton) {
+    }
+    @IBAction func button1(_ sender: UIButton) {
+    }
+    @IBAction func button2(_ sender: UIButton) {
+    }
+    @IBAction func button3(_ sender: UIButton) {
+    }
+    @IBAction func button4(_ sender: UIButton) {
+    }
+    @IBAction func button5(_ sender: UIButton) {
+    }
+    @IBAction func button6(_ sender: UIButton) {
+    }
+    @IBAction func button7(_ sender: UIButton) {
+    }
+    @IBAction func button8(_ sender: UIButton) {
+    }
+    @IBAction func button9(_ sender: UIButton) {
+    }
+    @IBAction func buttonPeriod(_ sender: UIButton) {
+    }
+    @IBAction func buttonDelete(_ sender: UIButton) {
+    }
+    
     
     // MARK: Private Methods
     
