@@ -44,7 +44,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             self.retrieveAddresses()
         })
         
-//        loadTestTransactions()
+        loadTestTransactions()
     }
     
     // MARK: - Table view data source
