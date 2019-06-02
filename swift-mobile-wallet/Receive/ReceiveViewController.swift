@@ -11,14 +11,21 @@ import UIKit
 class ReceiveViewController: UIViewController {
     
     // MARK: Properties
-
+    @IBOutlet weak var myAddressLabel: UILabel!
+    @IBOutlet weak var qrCodeImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    // MARK: Action
+    
+    @IBAction func copyAddress(_ sender: Any) {
+        print(myAddressLabel.text!)
+    }
+    
     /*
     // MARK: - Navigation
 

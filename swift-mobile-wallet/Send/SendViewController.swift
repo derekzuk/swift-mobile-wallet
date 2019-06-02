@@ -12,6 +12,7 @@ class SendViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var trtlAddress: UITextField!
+    @IBOutlet weak var trtlAmount: UILabel!
     @IBOutlet weak var usdAmountLabel: UILabel!
     
     override func viewDidLoad() {
@@ -33,45 +34,77 @@ class SendViewController: UIViewController {
      
      @IBAction func camera(_ sender: UIBarButtonItem) {
      }
-    
+
     // Mark: Action
     @IBAction func sendButtonClick(_ sender: UIButton) {
         print("clicked Send button")
+        // TODO: Check if address is valid
+        // TODO: Check if trtlAmount.text > 0
+        // TODO: Show a confirmation of some sort
         sendSimple()
     }
     
     @IBAction func button0(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "0")
     }
     @IBAction func button1(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "1")
     }
     @IBAction func button2(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
     }
     @IBAction func button3(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "3")
     }
     @IBAction func button4(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "4")
     }
     @IBAction func button5(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "5")
     }
     @IBAction func button6(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "6")
     }
     @IBAction func button7(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "7")
     }
     @IBAction func button8(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "8")
     }
     @IBAction func button9(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "9")
     }
     @IBAction func buttonPeriod(_ sender: UIButton) {
+        if (!trtlAmount.text!.contains(".")) {
+            trtlAmount.text!.append(".")
+        }
     }
     @IBAction func buttonDelete(_ sender: UIButton) {
+        if (trtlAmount.text!.count > 1) {
+            trtlAmount.text!.removeLast()
+        } else {
+            trtlAmount.text! = "0"
+        }
     }
     
     
     // MARK: Private Methods
     
+    private func addValueToTrtlAmount(numString: String) {
+        // TODO: if result is greater than total owned quantity, make trtlAmount = total owned quantity
+        
+        if (trtlAmount.text!.elementsEqual("0")) {
+            trtlAmount.text! = numString;
+        } else {
+            trtlAmount.text!.append(numString);
+        }
+        
+    }
+    
     private func sendSimple() {
         // prepare json data
-        let json: [String: Any] = [  "destination": "TRTLuzJzyboDALnqwsQMt6DGW665JsYFnHgECQo6rcWuQZNZ5dtY5zTGUnHHcp7tdeKErjgWvrwTGZccRm35AiAhWaveSRCstpW",
-                                    "amount": 11]
+        let json: [String: Any] = [  "destination": trtlAddress.text!,
+                                     "amount": Int(trtlAmount.text!)!]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
