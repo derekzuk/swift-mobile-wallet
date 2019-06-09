@@ -15,9 +15,15 @@ class SendViewController: UIViewController {
     @IBOutlet weak var trtlAmount: UILabel!
     @IBOutlet weak var usdAmountLabel: UILabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        trtlAddress.text = SendVariable.globalTrtlAddress
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        super.viewDidLoad()        
+        
         // Do any additional setup after loading the view.
     }
     

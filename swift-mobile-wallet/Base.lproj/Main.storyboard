@@ -471,11 +471,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="TF9-33-Dv7">
                             <connections>
                                 <action selector="camera:" destination="u5b-Pv-Hrx" id="gSA-D8-dio"/>
+                                <segue destination="eui-py-dRO" kind="show" id="jr5-tv-acU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="trtlAddress" destination="Yjd-pm-WrA" id="Rtd-FS-lfM"/>
+                        <outlet property="trtlAddress" destination="Yjd-pm-WrA" id="Ony-js-Mko"/>
                         <outlet property="trtlAmount" destination="7cG-Bv-f1R" id="em4-zK-iox"/>
                         <outlet property="usdAmountLabel" destination="Ae4-cH-nqy" id="oW1-0d-9KG"/>
                     </connections>
@@ -483,6 +484,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owL-r3-i70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2143.4782608695655" y="-1061.413043478261"/>
+        </scene>
+        <!--Scanner Controller-->
+        <scene sceneID="Kfu-T1-SmK">
+            <objects>
+                <viewController id="hel-hd-fGE" customClass="QRScannerController" customModule="swift_mobile_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cKZ-G1-RbB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqM-C0-Bfz">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QrJ-Qk-lr9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HqM-C0-Bfz" firstAttribute="bottom" secondItem="gg2-Fd-ytN" secondAttribute="bottom" id="7JV-Me-ynE"/>
+                            <constraint firstItem="HqM-C0-Bfz" firstAttribute="trailing" secondItem="gg2-Fd-ytN" secondAttribute="trailing" id="AeO-eN-FC2"/>
+                            <constraint firstItem="HqM-C0-Bfz" firstAttribute="leading" secondItem="gg2-Fd-ytN" secondAttribute="leading" id="V0v-Ec-Tfd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gg2-Fd-ytN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9aJ-xq-I2G">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="vPi-xh-HXP">
+                            <connections>
+                                <action selector="cancel:" destination="hel-hd-fGE" id="sn1-AY-F8b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messageLabel" destination="HqM-C0-Bfz" id="BKE-w0-sFa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0iq-5b-Mhu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4190.625" y="-1062.6760563380283"/>
         </scene>
         <!--Receive View Controller-->
         <scene sceneID="oti-dm-X4i">
@@ -493,9 +536,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="receiveImage" translatesAutoresizingMaskIntoConstraints="NO" id="saE-R0-vn8">
-                                <rect key="frame" x="-140" y="124" width="600" height="220"/>
+                                <rect key="frame" x="50" y="124" width="220" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="OQX-CU-G7b"/>
+                                    <constraint firstAttribute="width" constant="220" id="C8z-97-mg6"/>
+                                    <constraint firstAttribute="height" constant="220" id="UmZ-lV-WBq"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code and receive TRTL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAp-Ll-p3r">
@@ -623,6 +667,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGp-DS-EeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="-258"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="w5S-7Y-ntF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eui-py-dRO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2bJ-1b-zhH">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hel-hd-fGE" kind="relationship" relationship="rootViewController" id="SYa-eh-XHC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gIL-RO-U2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3176" y="-1062"/>
         </scene>
     </scenes>
     <resources>
