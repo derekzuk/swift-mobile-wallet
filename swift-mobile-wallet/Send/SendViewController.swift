@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SendViewController: UIViewController {
+class SendViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var trtlAddress: UITextField!
@@ -22,11 +22,21 @@ class SendViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        self.trtlAddress.delegate = self
     }
     
+    // These methods allow a user to dismiss the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
 
     // MARK: Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
