@@ -8,17 +8,26 @@
 
 import UIKit
 
-class SendViewController: UIViewController, UITextFieldDelegate {
+class SendViewController: UIViewController, UITextViewDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var trtlAddress: UITextField!
+    @IBOutlet weak var trtlAddress: UITextView!
     @IBOutlet weak var trtlAmount: UILabel!
     @IBOutlet weak var usdAmountLabel: UILabel!
+    
+    var placeholderText = "Enter TRTL Address"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        trtlAddress.text = SendVariable.globalTrtlAddress
+        // Set placeholder text
+        if (SendVariable.globalTrtlAddress != "") {
+            trtlAddress.text = SendVariable.globalTrtlAddress
+            trtlAddress.textColor = .black
+        } else {
+            trtlAddress.text = placeholderText
+            trtlAddress.textColor = .lightGray
+        }
     }
     
     override func viewDidLoad() {
@@ -33,11 +42,31 @@ class SendViewController: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
-
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if (textView.text == "placeholder text here..." && textView.textColor == .lightGray) {
+            textView.text = ""
+            textView.textColor = .black
+        }
+        textView.becomeFirstResponder() //Optional
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if (textView.text == "")
+        {
+            textView.text = "placeholder text here..."
+            textView.textColor = .lightGray
+        }
+        textView.resignFirstResponder()
+    }
+    
     // MARK: Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
