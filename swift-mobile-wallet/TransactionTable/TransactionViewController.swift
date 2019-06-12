@@ -44,7 +44,11 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             })
             
-            self.getBalanceByAddress()
+            self.getBalanceByAddress(completion: {(quantity) in
+                DispatchQueue.main.async {
+                    self.trtlWalletQuantity.text = quantity + " TRTL"
+                }
+            })
             
             // TODO: this is not necessary at the moment
             self.retrieveAddresses()
@@ -137,6 +141,12 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             // reloadData() must be dispatched from the main thread
             DispatchQueue.main.async {
                 self.transactionTableView.reloadData()
+            }
+        })
+        
+        self.getBalanceByAddress(completion: {(quantity) in
+            DispatchQueue.main.async {
+                self.trtlWalletQuantity.text = quantity + " TRTL"
             }
         })
     }
@@ -243,7 +253,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         }.resume()
     }
     
-    private func getBalanceByAddress() {
+    private func getBalanceByAddress(completion: @escaping (String) -> Void) {
         let urlString = "http://127.0.0.1:8070/balance/TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
@@ -260,9 +270,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             
             do {
                 guard let data = data else { return }
-                
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                self.trtlWalletQuantity.text = String(json["unlocked"] as! Int)
+                completion(String(json["unlocked"] as! Int))
             } catch {
                 print(error)
             }
