@@ -13,6 +13,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: Properties
     @IBOutlet weak var transactionTableView: UITableView!
+    @IBOutlet weak var trtlWalletQuantity: UILabel!
     
     var transactions = [Transaction]()
     var transactionsFromApi = [TransactionFromApi]()
@@ -23,11 +24,14 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        trtlWalletQuantity.text = "Retrieving Wallet..."
+        
         // This view controller itself will provide the delegate methods and row data for the table view.
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
 
         // We check that the wallet is open first before populating transactions
+        // TODO: Opening wallet not working
         openWallet(completion: {() in
             self.retrieveTransactionsFromApi(completion: {() in
                 // Reorder list
@@ -40,11 +44,13 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             })
             
+            self.getBalanceByAddress()
+            
             // TODO: this is not necessary at the moment
             self.retrieveAddresses()
         })
         
-        loadTestTransactions()
+//        loadTestTransactions()
     }
     
     // MARK: - Table view data source
@@ -158,18 +164,26 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         let urlString = "http://127.0.0.1:8070/wallet/open"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
+        // prepare json data
+        let json: [String: Any] = ["daemonHost": "127.0.0.1",
+                                   "daemonPort": 11898,
+                                   "filename": "mywallet.wallet",
+                                   "password": "supersecretpassword"]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
         request.setValue("password", forHTTPHeaderField: "X-API-KEY")
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
         let session = URLSession.shared
         
         session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if error != nil {
                 print(error ?? "Error encountered printing the error")
                 return
+            } else {
+                completion()
             }
-            
-            completion()
         }.resume()
     }
     
@@ -201,7 +215,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                         transfersArray.append(newTransfer)
 
                         let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
-                                                                photo: self.photo1,
+                                                                photo: transfer["amount"] as! Int > 0 ? self.photo1 : self.photo2,
                                                                 address: transfer["address"] as! String,
                                                                 timestamp: transaction["timestamp"] as! Int)
                         // We only add the transaction if it is not already contained in the transaction array
@@ -227,6 +241,32 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             
             completion()
         }.resume()
+    }
+    
+    private func getBalanceByAddress() {
+        let urlString = "http://127.0.0.1:8070/balance/TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(url: url! as URL)
+        request.setValue("password", forHTTPHeaderField: "X-API-KEY")
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        
+        session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if error != nil {
+                print(error ?? "Error encountered printing the error")
+                return
+            }
+            
+            do {
+                guard let data = data else { return }
+                
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                self.trtlWalletQuantity.text = String(json["unlocked"] as! Int)
+            } catch {
+                print(error)
+            }
+            }.resume()
     }
     
     private func retrieveAddresses() {

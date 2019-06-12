@@ -51,7 +51,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if (textView.text == "placeholder text here..." && textView.textColor == .lightGray) {
+        if (textView.text == placeholderText && textView.textColor == .lightGray) {
             textView.text = ""
             textView.textColor = .black
         }
@@ -61,7 +61,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if (textView.text == "")
         {
-            textView.text = "placeholder text here..."
+            textView.text = placeholderText
             textView.textColor = .lightGray
         }
         textView.resignFirstResponder()
