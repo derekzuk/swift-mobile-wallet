@@ -89,11 +89,19 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sendSimple()
     }
     
-    @IBAction func button0(_ sender: UIButton) {
+    @IBAction func button0Down(_ sender: UIButton) {
         addValueToTrtlAmount(numString: "0")
+        sender.backgroundColor = UIColor.lightGray
+    }
+    @IBAction func button0(_ sender: UIButton) {
+        sender.backgroundColor = UIColor.green
+    }
+    @IBAction func button1Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "1")
+        sender.backgroundColor = UIColor.lightGray
     }
     @IBAction func button1(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "1")
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button2(_ sender: UIButton) {
         addValueToTrtlAmount(numString: "2")

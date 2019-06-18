@@ -15,6 +15,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var trtlWalletQuantity: UILabel!
     
+    var address: String = "TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
     var transactions = [Transaction]()
     var transactionsFromApi = [TransactionFromApi]()
     var addresses = [String]()
@@ -44,7 +45,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             })
             
-            self.getBalanceByAddress(completion: {(quantity) in
+            // TODO: Get address
+            
+            self.getBalanceByAddress(address: self.address, completion: {(quantity) in
                 DispatchQueue.main.async {
                     self.trtlWalletQuantity.text = quantity + " TRTL"
                 }
@@ -86,41 +89,6 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -144,7 +112,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             }
         })
         
-        self.getBalanceByAddress(completion: {(quantity) in
+        self.getBalanceByAddress(address: self.address, completion: {(quantity) in
             DispatchQueue.main.async {
                 self.trtlWalletQuantity.text = quantity + " TRTL"
             }
@@ -191,6 +159,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             if error != nil {
                 print(error ?? "Error encountered printing the error")
                 return
+                // TODO: Check if response is successful before proceeding to completion()
             } else {
                 completion()
             }
@@ -224,7 +193,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                         let newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
                         transfersArray.append(newTransfer)
 
-                        let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
+                        let transactionForDisplay = Transaction(amount: abs(transfer["amount"] as! Int),
                                                                 photo: transfer["amount"] as! Int > 0 ? self.photo1 : self.photo2,
                                                                 address: transfer["address"] as! String,
                                                                 timestamp: transaction["timestamp"] as! Int)
@@ -253,8 +222,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         }.resume()
     }
     
-    private func getBalanceByAddress(completion: @escaping (String) -> Void) {
-        let urlString = "http://127.0.0.1:8070/balance/TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
+    private func getBalanceByAddress(address: String, completion: @escaping (String) -> Void) {
+        let urlString = "http://127.0.0.1:8070/balance/" + address
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
         request.setValue("password", forHTTPHeaderField: "X-API-KEY")

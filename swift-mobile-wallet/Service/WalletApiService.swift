@@ -14,8 +14,8 @@ class WalletApiService {
     let photo1 = UIImage(named: "sendImage")
     let photo2 = UIImage(named: "receiveImage")
     
-    public func retrieveTransactionsFromApi(transactionTableView: UITableView!) -> [Transaction] {
-        var transactions = [Transaction]()
+    private func retrieveTransactionsFromApi(completion: @escaping (_ retrievedTransactions: [Transaction]) -> Void) {
+        var retrievedTransactions = [Transaction]()
         let urlString = "http://127.0.0.1:8070/transactions"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
@@ -36,59 +36,39 @@ class WalletApiService {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let transactionsArray = json["transactions"] as! [[String: Any]]
                 for transaction in transactionsArray {
-                    print("transaction: ")
-                    print(transaction)
-                    print(" ")
-                    
                     var transfersArray = [Transfer]()
                     let transferArray = transaction["transfers"] as! [[String: Any]]
                     for transfer in transferArray {
-                        print("transfer: ")
-                        print(transfer)
-                        print(" ")
                         let newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
                         transfersArray.append(newTransfer)
                         
                         let transactionForDisplay = Transaction(amount: transfer["amount"] as! Int,
-                                                                photo: self.photo1,
+                                                                photo: transfer["amount"] as! Int > 0 ? self.photo1 : self.photo2,
                                                                 address: transfer["address"] as! String,
                                                                 timestamp: transaction["timestamp"] as! Int)
-                        print("transactionForDisplay!: ")
-                        print(transactionForDisplay!)
-                        print("")
-                        transactions.append(transactionForDisplay!)
+                        // We only add the transaction if it is not already contained in the transaction array
+                        if (!retrievedTransactions.contains(transactionForDisplay!)) {
+                            retrievedTransactions.append(transactionForDisplay!)
+                        }
                     }
                     
-                    let transactionExtracted = transaction["hash"] as! String
-                    print("transactionExtracted: ")
-                    print(transactionExtracted)
-                    print(" ")
-                    
-                    
-                    
-                    let transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
-                                                                unlockTime: transaction["unlockTime"] as! Int,
-                                                                paymentId: transaction["paymentId"] as? String ?? "",
-                                                                timestamp: transaction["timestamp"] as! Int,
-                                                                blockHeight: transaction["blockHeight"] as! Int,
-                                                                transfers: transfersArray,
-                                                                isCoinbaseTransaction: transaction["isCoinbaseTransaction"] as! Bool,
-                                                                fee: transaction["fee"] as! Int)
-                    print(transactionFromApi.description)
-                    print(" ")
-                    
-                    // reloadData() must be dispatched from the main thread
-                    DispatchQueue.main.async {
-                        transactionTableView.reloadData()
-                    }
-                    
-                    
+//                    let transactionExtracted = transaction["hash"] as! String
+//
+//                    let transactionFromApi = TransactionFromApi(hash: transaction["hash"] as! String,
+//                                                                unlockTime: transaction["unlockTime"] as! Int,
+//                                                                paymentId: transaction["paymentId"] as? String ?? "",
+//                                                                timestamp: transaction["timestamp"] as! Int,
+//                                                                blockHeight: transaction["blockHeight"] as! Int,
+//                                                                transfers: transfersArray,
+//                                                                isCoinbaseTransaction: transaction["isCoinbaseTransaction"] as! Bool,
+//                                                                fee: transaction["fee"] as! Int)
                 }
             } catch {
                 print(error)
             }
-        }.resume()
-        return transactions
+            
+            completion(retrievedTransactions)
+            }.resume()
     }
     
     public func retrieveAddresses(addresses: [String]) -> [String] {
