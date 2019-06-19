@@ -285,6 +285,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button2:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="U2X-dJ-yKY"/>
+                                                            <action selector="button2Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="fYL-Vz-oSg"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KN8-XG-CMH">
@@ -295,6 +296,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button3:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="QE2-eC-waI"/>
+                                                            <action selector="button3Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="UaS-j7-H58"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -326,6 +328,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button5:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="1S4-ha-Mbh"/>
+                                                            <action selector="button5Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="6pR-jN-wyK"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIf-Et-Ath">
@@ -336,6 +339,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button6:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="B03-S9-kHa"/>
+                                                            <action selector="button6Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="4uo-by-7u1"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-iy-HCi">
@@ -346,6 +350,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button4:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="9r4-tB-wwm"/>
+                                                            <action selector="button4Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="u2A-ZD-rGe"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -375,6 +380,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button7:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="qbN-P6-2Vl"/>
+                                                            <action selector="button7Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="LVI-Nw-pX6"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQa-8R-Oxa">
@@ -385,6 +391,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button8:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="j1I-sK-wQb"/>
+                                                            <action selector="button8Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="1cY-ll-YuW"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhh-2B-RtM">
@@ -395,6 +402,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="button9:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="IeR-xM-Pdi"/>
+                                                            <action selector="button9Down:" destination="u5b-Pv-Hrx" eventType="touchDown" id="ILQ-yb-47S"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -435,6 +443,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="buttonDelete:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="fEq-N5-bZK"/>
+                                                            <action selector="buttonDeleteDown:" destination="u5b-Pv-Hrx" eventType="touchDown" id="uVY-O1-9gv"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZX-ns-j1k">
@@ -445,6 +454,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="buttonPeriod:" destination="u5b-Pv-Hrx" eventType="touchUpInside" id="JC4-0G-N3v"/>
+                                                            <action selector="buttonPeriodDown:" destination="u5b-Pv-Hrx" eventType="touchDown" id="qJd-rJ-8uH"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -16,6 +16,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var usdAmountLabel: UILabel!
     
     var placeholderText = "Enter TRTL Address"
+    var tempBackgroundColor: UIColor = UIColor.lightGray
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -91,55 +92,104 @@ class SendViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func button0Down(_ sender: UIButton) {
         addValueToTrtlAmount(numString: "0")
-        sender.backgroundColor = UIColor.lightGray
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button0(_ sender: UIButton) {
-        sender.backgroundColor = UIColor.green
+        sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button1Down(_ sender: UIButton) {
         addValueToTrtlAmount(numString: "1")
-        sender.backgroundColor = UIColor.lightGray
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button1(_ sender: UIButton) {
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button2Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor.green
     }
     @IBAction func button2(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button3Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "3")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button3(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "3")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button4Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button4(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "4")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button5Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button5(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "5")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button6Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button6(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "6")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button7Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button7(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "7")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button8Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button8(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "8")
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func button9Down(_ sender: UIButton) {
+        addValueToTrtlAmount(numString: "2")
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
     @IBAction func button9(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "9")
+        sender.backgroundColor = tempBackgroundColor
     }
-    @IBAction func buttonPeriod(_ sender: UIButton) {
+    @IBAction func buttonPeriodDown(_ sender: UIButton) {
         if (!trtlAmount.text!.contains(".")) {
             trtlAmount.text!.append(".")
         }
+        tempBackgroundColor = sender.backgroundColor!
+        sender.backgroundColor = UIColor.green
     }
-    @IBAction func buttonDelete(_ sender: UIButton) {
+    @IBAction func buttonPeriod(_ sender: UIButton) {
+        sender.backgroundColor = tempBackgroundColor
+    }
+    @IBAction func buttonDeleteDown(_ sender: UIButton) {
         if (trtlAmount.text!.count > 1) {
             trtlAmount.text!.removeLast()
         } else {
             trtlAmount.text! = "0"
         }
     }
-    
+    @IBAction func buttonDelete(_ sender: UIButton) {
+        sender.backgroundColor = tempBackgroundColor
+    }
     
     // MARK: Private Methods
     
