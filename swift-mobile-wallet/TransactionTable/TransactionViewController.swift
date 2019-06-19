@@ -25,11 +25,14 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         trtlWalletQuantity.text = "Retrieving Wallet..."
         
         // This view controller itself will provide the delegate methods and row data for the table view.
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
+        
+        transactionTableView.rowHeight = 80
 
         // We check that the wallet is open first before populating transactions
         // TODO: Opening wallet not working
