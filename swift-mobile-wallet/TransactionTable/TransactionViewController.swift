@@ -32,6 +32,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
         
+        // Set row height
         transactionTableView.rowHeight = 80
 
         // We check that the wallet is open first before populating transactions
