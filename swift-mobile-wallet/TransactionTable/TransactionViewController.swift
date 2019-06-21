@@ -87,7 +87,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.quantityLabel.text = String(transaction.amount)
         cell.transactionImage.image = transaction.photo
-        cell.addressLabel.text = transaction.address
+        cell.addressLabel.text = transaction.dateString
         
         return cell
     }
@@ -127,15 +127,15 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: Private Methods
     
     private func loadTestTransactions() {
-        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, address: "1908clkcn02dj", timestamp: 12345) else {
+        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, dateString: "1908clkcn02dj", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction1")
         }
         
-        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, address: "cms93jcls832", timestamp: 12345) else {
+        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, dateString: "cms93jcls832", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction2")
         }
         
-        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, address: "ck83nclls8", timestamp: 12345) else {
+        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, dateString: "ck83nclls8", timestamp: 12345) else {
             fatalError("Unable to instantiate transaction3")
         }
         
@@ -196,10 +196,20 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                     for transfer in transferArray {
                         let newTransfer = Transfer(address: transfer["address"] as! String, amount: transfer["amount"] as! Int)
                         transfersArray.append(newTransfer)
-
+                        
+                        // Create dateString
+                        var timeInt = transaction["timestamp"] as! Int
+                        let date = Date(timeIntervalSince1970: TimeInterval(timeInt))
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "EEE, dd MMM yyyy hh:mm"
+                        dateFormatter.locale = Locale.init(identifier: "en_ES")
+                        
+                        let dateObj = dateFormatter.string(from:date)
+                        
                         let transactionForDisplay = Transaction(amount: abs(transfer["amount"] as! Int),
                                                                 photo: transfer["amount"] as! Int > 0 ? self.photo1 : self.photo2,
-                                                                address: transfer["address"] as! String,
+                                                                dateString: dateObj,
                                                                 timestamp: transaction["timestamp"] as! Int)
                         // We only add the transaction if it is not already contained in the transaction array
                         if (!self.transactions.contains(transactionForDisplay!)) {

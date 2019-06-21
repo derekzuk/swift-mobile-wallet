@@ -24,22 +24,16 @@ class Transaction: Hashable {
     
     var amount: Int
     var photo: UIImage?
-    var address: String
+    var dateString: String
     var timestamp: Int
     
     //MARK: Initialization
     
-    init?(amount: Int, photo: UIImage?, address: String, timestamp: Int) {
-        // Initialization should fail if there is no address
-        // The address must not be empty
-        guard !address.isEmpty else {
-            return nil
-        }
-        
+    init?(amount: Int, photo: UIImage?, dateString: String, timestamp: Int) {
         // Initialize stored properties.
         self.amount = amount
         self.photo = photo
-        self.address = address
+        self.dateString = dateString
         self.timestamp = timestamp
     }
     
