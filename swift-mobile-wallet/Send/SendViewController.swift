@@ -123,7 +123,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button4Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "4")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }
@@ -131,7 +131,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button5Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "5")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }
@@ -139,7 +139,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button6Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "6")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }
@@ -147,7 +147,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button7Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "7")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }
@@ -155,7 +155,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button8Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "8")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }
@@ -163,7 +163,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func button9Down(_ sender: UIButton) {
-        addValueToTrtlAmount(numString: "2")
+        addValueToTrtlAmount(numString: "9")
         tempBackgroundColor = sender.backgroundColor!
         sender.backgroundColor = UIColor(named: "lightGreen2")
     }

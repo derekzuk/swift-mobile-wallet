@@ -220,23 +220,54 @@
                                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="QLA-pw-Mam">
                                         <rect key="frame" x="0.0" y="70" width="414" height="70"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-cH-nqy">
-                                                <rect key="frame" x="158.66666666666666" y="35.333333333333343" width="97" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-cH-nqy">
+                                                <rect key="frame" x="195.33333333333334" y="38" width="23.333333333333343" height="23"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="$0">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="19" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cG-Bv-f1R">
-                                                <rect key="frame" x="5" y="9.9999999999999982" width="404" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cG-Bv-f1R">
+                                                <rect key="frame" x="5" y="10" width="404" height="23"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0">
+                                                        <attributes>
+                                                            <font key="NSFont" size="19" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkt-zQ-cbm">
+                                                <rect key="frame" x="20" y="7" width="46" height="30"/>
+                                                <color key="backgroundColor" name="lightGreen2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Ek4-ND-6Uz"/>
+                                                    <constraint firstAttribute="width" constant="46" id="hpp-CK-nlV"/>
+                                                </constraints>
+                                                <state key="normal" title="Max">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="lightGreen"/>
                                         <constraints>
                                             <constraint firstItem="Ae4-cH-nqy" firstAttribute="top" secondItem="7cG-Bv-f1R" secondAttribute="bottom" constant="5" id="4Hk-zx-RWP"/>
+                                            <constraint firstItem="Pkt-zQ-cbm" firstAttribute="leading" secondItem="QLA-pw-Mam" secondAttribute="leading" constant="20" id="D78-NF-qWA"/>
                                             <constraint firstItem="Ae4-cH-nqy" firstAttribute="centerX" secondItem="QLA-pw-Mam" secondAttribute="centerX" id="Tq6-5U-3Gh"/>
+                                            <constraint firstItem="Pkt-zQ-cbm" firstAttribute="top" secondItem="QLA-pw-Mam" secondAttribute="top" constant="7" id="bAb-w4-Epk"/>
                                             <constraint firstItem="7cG-Bv-f1R" firstAttribute="top" secondItem="QLA-pw-Mam" secondAttribute="top" constant="10" id="oE0-RN-tfQ"/>
                                             <constraint firstItem="7cG-Bv-f1R" firstAttribute="leading" secondItem="QLA-pw-Mam" secondAttribute="leading" constant="5" id="of5-65-0u5"/>
                                             <constraint firstAttribute="trailing" secondItem="7cG-Bv-f1R" secondAttribute="trailing" constant="5" id="ouD-ON-hef"/>
@@ -630,10 +661,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIG-fr-zfd">
                                         <rect key="frame" x="30" y="114" width="354" height="109"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My TRTL Address T123123JFDSKJ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6go-5D-dMc">
-                                                <rect key="frame" x="10" y="44.333333333333371" width="334" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6go-5D-dMc">
+                                                <rect key="frame" x="10" y="44.666666666666629" width="334" height="19.666666666666671"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="My TRTL Address T123123JFDSKJ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="17" name="GillSans"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -812,6 +850,9 @@
         </namedColor>
         <namedColor name="lightGreen">
             <color red="0.0" green="0.56499999761581421" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreen2">
+            <color red="0.0" green="0.66500002145767212" blue="0.43500000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

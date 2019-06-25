@@ -208,7 +208,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                         let dateObj = dateFormatter.string(from:date)
                         
                         let transactionForDisplay = Transaction(amount: abs(transfer["amount"] as! Int),
-                                                                photo: transfer["amount"] as! Int > 0 ? self.photo1 : self.photo2,
+                                                                photo: transfer["amount"] as! Int > 0 ? self.photo2 : self.photo1,
                                                                 dateString: dateObj,
                                                                 timestamp: transaction["timestamp"] as! Int)
                         // We only add the transaction if it is not already contained in the transaction array
