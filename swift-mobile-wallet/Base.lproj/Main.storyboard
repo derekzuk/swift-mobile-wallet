@@ -846,7 +846,7 @@
         <!--Settings-->
         <scene sceneID="FzA-uy-m4G">
             <objects>
-                <viewController id="FPH-DK-Giw" sceneMemberID="viewController">
+                <viewController id="FPH-DK-Giw" customClass="SettingsViewController" customModule="swift_mobile_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ClZ-wc-t6J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

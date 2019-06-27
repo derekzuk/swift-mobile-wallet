@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022C1A5B22C582E900BBC6A6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022C1A5A22C582E900BBC6A6 /* SettingsViewController.swift */; };
 		028FA3692291DF9300CE198B /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA3682291DF9300CE198B /* TransactionTableViewCell.swift */; };
 		028FA36B2291E01500CE198B /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36A2291E01500CE198B /* TransactionViewController.swift */; };
 		028FA36D2291E19A00CE198B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36C2291E19A00CE198B /* Transaction.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022C1A5A22C582E900BBC6A6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		028FA3682291DF9300CE198B /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		028FA36A2291E01500CE198B /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		028FA36C2291E19A00CE198B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022C1A5722C582A800BBC6A6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				022C1A5A22C582E900BBC6A6 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		028FA36E2291F1F800CE198B /* TransactionTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		02B5C88022887C9700B3C991 /* swift-mobile-wallet */ = {
 			isa = PBXGroup;
 			children = (
+				022C1A5722C582A800BBC6A6 /* Settings */,
 				028FA382229C853C00CE198B /* Receive */,
 				028FA37F229AF2C700CE198B /* Send */,
 				028FA37C229A4D1800CE198B /* Service */,
@@ -283,6 +294,7 @@
 				02CA03D222AD8BEB00CF4840 /* QRScannerController.swift in Sources */,
 				028FA37B22999EF500CE198B /* Transfer.swift in Sources */,
 				028FA36D2291E19A00CE198B /* Transaction.swift in Sources */,
+				022C1A5B22C582E900BBC6A6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
