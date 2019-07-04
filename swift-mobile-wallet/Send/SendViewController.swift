@@ -15,6 +15,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var trtlAmount: UILabel!
     @IBOutlet weak var usdAmountLabel: UILabel!
     
+    let handler = NSDecimalNumberHandler(roundingMode: .plain, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
     var usdPerTrtl: NSDecimalNumber = 0.0
     var placeholderText = "Enter TRTL Address"
     var tempBackgroundColor: UIColor = UIColor.lightGray
@@ -30,6 +31,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
             trtlAddress.text = placeholderText
             trtlAddress.textColor = .lightGray
         }
+        usdAmountLabel.textColor = .white
     }
     
     override func viewDidLoad() {
@@ -189,7 +191,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         } else {
             trtlAmount.text! = "0"
         }
-        usdAmountLabel.text! = NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl).stringValue
+        usdAmountLabel.text! = (NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
     }
     @IBAction func buttonDelete(_ sender: UIButton) {
         sender.backgroundColor = tempBackgroundColor
@@ -202,15 +204,14 @@ class SendViewController: UIViewController, UITextViewDelegate {
         
         if (trtlAmount.text!.elementsEqual("0")) {
             trtlAmount.text! = numString;
-            usdAmountLabel.text! = NSDecimalNumber(string: numString).multiplying(by: self.usdPerTrtl).stringValue
+            usdAmountLabel.text! = (NSDecimalNumber(string: numString).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
         } else {
             trtlAmount.text!.append(numString);
-            usdAmountLabel.text! = NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl).stringValue
+            usdAmountLabel.text! = (NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
         }
     }
     
     private func sendSimple() {
-        // prepare json data
         let json: [String: Any] = [  "destination": trtlAddress.text!,
                                      "amount": Int(trtlAmount.text!)!]
         
@@ -237,7 +238,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         let urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRTL"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
-        request.setValue("", forHTTPHeaderField: "X-CMC_PRO_API_KEY")
+        request.setValue("7ca858a7-dfcb-413b-974f-8b7161417caf", forHTTPHeaderField: "X-CMC_PRO_API_KEY")
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session = URLSession.shared
@@ -257,11 +258,9 @@ class SendViewController: UIViewController, UITextViewDelegate {
                 let sub4 = sub3["USD"] as! [String: Any]
                 let price = sub4["price"] as! NSNumber
                 self.usdPerTrtl = NSDecimalNumber(decimal: price.decimalValue)
-                print(self.usdPerTrtl)
             } catch {
                 print(error)
             }
             }.resume()
     }
-
 }

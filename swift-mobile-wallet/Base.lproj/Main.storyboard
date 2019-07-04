@@ -222,11 +222,11 @@
                                         <rect key="frame" x="0.0" y="70" width="414" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-cH-nqy">
-                                                <rect key="frame" x="195.33333333333334" y="38" width="23.333333333333343" height="23"/>
+                                                <rect key="frame" x="201.33333333333334" y="38" width="11.666666666666657" height="23"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="$0">
+                                                    <fragment content="0">
                                                         <attributes>
-                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <font key="NSFont" size="19" name=".AppleSystemUIFont"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -262,11 +262,25 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDf-qH-LMl">
+                                                <rect key="frame" x="189.33333333333334" y="38" width="12" height="23"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="$">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="19" name=".AppleSystemUIFont"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="lightGreen"/>
                                         <constraints>
+                                            <constraint firstItem="RDf-qH-LMl" firstAttribute="top" secondItem="7cG-Bv-f1R" secondAttribute="bottom" constant="5" id="1hp-a8-AaB"/>
                                             <constraint firstItem="Ae4-cH-nqy" firstAttribute="top" secondItem="7cG-Bv-f1R" secondAttribute="bottom" constant="5" id="4Hk-zx-RWP"/>
                                             <constraint firstItem="Pkt-zQ-cbm" firstAttribute="leading" secondItem="QLA-pw-Mam" secondAttribute="leading" constant="20" id="D78-NF-qWA"/>
+                                            <constraint firstItem="Ae4-cH-nqy" firstAttribute="leading" secondItem="RDf-qH-LMl" secondAttribute="trailing" id="NJC-zH-CHp"/>
                                             <constraint firstItem="Ae4-cH-nqy" firstAttribute="centerX" secondItem="QLA-pw-Mam" secondAttribute="centerX" id="Tq6-5U-3Gh"/>
                                             <constraint firstItem="Pkt-zQ-cbm" firstAttribute="top" secondItem="QLA-pw-Mam" secondAttribute="top" constant="7" id="bAb-w4-Epk"/>
                                             <constraint firstItem="7cG-Bv-f1R" firstAttribute="top" secondItem="QLA-pw-Mam" secondAttribute="top" constant="10" id="oE0-RN-tfQ"/>
