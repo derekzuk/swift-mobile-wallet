@@ -49,7 +49,7 @@
 		02B5C88122887C9700B3C991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B5C88622887C9700B3C991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02B5C88822887C9800B3C991 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		02B5C88B22887C9900B3C991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		02B5C88B22887C9900B3C991 /* Base */ = {isa = PBXFileReference; explicitFileType = image.png; name = Base; path = "Assets.xcassets/iOS/AppIcon.appiconset/trtl2-1024.png"; sourceTree = "<group>"; };
 		02B5C88D22887C9900B3C991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02B5C89222887C9900B3C991 /* swift-mobile-walletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-mobile-walletTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B5C89622887C9900B3C991 /* swift_mobile_walletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_mobile_walletTests.swift; sourceTree = "<group>"; };
