@@ -15,6 +15,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var trtlAmount: UILabel!
     @IBOutlet weak var usdAmountLabel: UILabel!
     
+    var usdPerTrtl: NSDecimalNumber = 0.0
     var placeholderText = "Enter TRTL Address"
     var tempBackgroundColor: UIColor = UIColor.lightGray
     
@@ -33,6 +34,8 @@ class SendViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getTrtlQuote()
         
         self.trtlAddress.delegate = self
     }
@@ -186,6 +189,7 @@ class SendViewController: UIViewController, UITextViewDelegate {
         } else {
             trtlAmount.text! = "0"
         }
+        usdAmountLabel.text! = NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl).stringValue
     }
     @IBAction func buttonDelete(_ sender: UIButton) {
         sender.backgroundColor = tempBackgroundColor
@@ -198,10 +202,11 @@ class SendViewController: UIViewController, UITextViewDelegate {
         
         if (trtlAmount.text!.elementsEqual("0")) {
             trtlAmount.text! = numString;
+            usdAmountLabel.text! = NSDecimalNumber(string: numString).multiplying(by: self.usdPerTrtl).stringValue
         } else {
             trtlAmount.text!.append(numString);
+            usdAmountLabel.text! = NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl).stringValue
         }
-        
     }
     
     private func sendSimple() {
@@ -224,6 +229,37 @@ class SendViewController: UIViewController, UITextViewDelegate {
             if error != nil {
                 print(error ?? "Error encountered printing the error")
                 return
+            }
+            }.resume()
+    }
+    
+    private func getTrtlQuote() {
+        let urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRTL"
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(url: url! as URL)
+        request.setValue("", forHTTPHeaderField: "X-CMC_PRO_API_KEY")
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        
+        session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if error != nil {
+                print(error ?? "Error encountered printing the error")
+                return
+            }
+            
+            do {
+                guard let data = data else { return }                
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let sub1 = json["data"] as! [String: Any]
+                let sub2 = sub1["TRTL"] as! [String: Any]
+                let sub3 = sub2["quote"] as! [String: Any]
+                let sub4 = sub3["USD"] as! [String: Any]
+                let price = sub4["price"] as! NSNumber
+                self.usdPerTrtl = NSDecimalNumber(decimal: price.decimalValue)
+                print(self.usdPerTrtl)
+            } catch {
+                print(error)
             }
             }.resume()
     }
