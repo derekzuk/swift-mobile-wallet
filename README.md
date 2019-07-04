@@ -1,6 +1,7 @@
 # swift-mobile-wallet
-Mobile wallet build with Swift
+<img src="https://github.com/derekzuk/swift-mobile-wallet/blob/master/swift-mobile-wallet/img/trtlHomePage.png" width="358" height="622"/>
 
+# Setup
 1. Download the TurtleCoin CLI from https://turtlecoin.lol/
 2. Run ./TurtleCoind
 3. Run ./wallet-api --rpc-password "password" --enable-cors "*"
