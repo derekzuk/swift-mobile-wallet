@@ -6,6 +6,6 @@ Mobile wallet build with Swift
 3. Run ./wallet-api --rpc-password "password" --enable-cors "*"
 4. Create a wallet locally
 5. Populate your address in the swift-mobile-wallet app (TransactionViewController)
-6. Run the swift-mobile-wallet from Xcode and observe that transactions are populate and you can send or receive TRTL
+6. Run the swift-mobile-wallet from Xcode and observe that transaction data populates and you can send or receive TRTL
 
 Watch for more user-friendly setup/configuration, currently in development.
