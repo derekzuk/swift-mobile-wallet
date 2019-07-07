@@ -868,7 +868,11 @@
                         <viewLayoutGuide key="safeArea" id="4Bk-Av-Zbi"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="M4a-Q8-gcB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="hGR-F5-JL0"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="hGR-F5-JL0">
+                            <connections>
+                                <action selector="goBack:" destination="FPH-DK-Giw" id="vel-ew-2GQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wob-63-uBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
