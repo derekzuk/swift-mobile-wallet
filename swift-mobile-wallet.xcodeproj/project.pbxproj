@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		022C1A5B22C582E900BBC6A6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022C1A5A22C582E900BBC6A6 /* SettingsViewController.swift */; };
+		024C86BA22D9AD70002CE2D2 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024C86B922D9AD70002CE2D2 /* GlobalVariables.swift */; };
 		028FA3692291DF9300CE198B /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA3682291DF9300CE198B /* TransactionTableViewCell.swift */; };
 		028FA36B2291E01500CE198B /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36A2291E01500CE198B /* TransactionViewController.swift */; };
 		028FA36D2291E19A00CE198B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FA36C2291E19A00CE198B /* Transaction.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		022C1A5A22C582E900BBC6A6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		024C86B922D9AD70002CE2D2 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		028FA3682291DF9300CE198B /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		028FA36A2291E01500CE198B /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		028FA36C2291E19A00CE198B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				02B5C88D22887C9900B3C991 /* Info.plist */,
 				02B5C88A22887C9900B3C991 /* LaunchScreen.storyboard */,
 				02B5C88522887C9700B3C991 /* Main.storyboard */,
+				024C86B922D9AD70002CE2D2 /* GlobalVariables.swift */,
 			);
 			path = "swift-mobile-wallet";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024C86BA22D9AD70002CE2D2 /* GlobalVariables.swift in Sources */,
 				028FA36B2291E01500CE198B /* TransactionViewController.swift in Sources */,
 				028FA384229C855D00CE198B /* ReceiveViewController.swift in Sources */,
 				028FA3692291DF9300CE198B /* TransactionTableViewCell.swift in Sources */,

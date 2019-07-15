@@ -176,7 +176,8 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     @IBAction func buttonPeriodDown(_ sender: UIButton) {
-        if (!trtlAmount.text!.contains(".")) {
+        if (!trtlAmount.text!.contains(".")
+            && Int(trtlAmount.text!) != GlobalVariables.totalTrtl) {
             trtlAmount.text!.append(".")
         }
         tempBackgroundColor = sender.backgroundColor!
@@ -197,16 +198,29 @@ class SendViewController: UIViewController, UITextViewDelegate {
         sender.backgroundColor = tempBackgroundColor
     }
     
+    @IBAction func maxButton(_ sender: UIButton) {
+        trtlAmount.text! = String(GlobalVariables.totalTrtl)
+        usdAmountLabel.text! = (NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
+    }
+    
+    
     // MARK: Private Methods
     
     private func addValueToTrtlAmount(numString: String) {
-        // TODO: if result is greater than total owned quantity, make trtlAmount = total owned quantity
-        
         if (trtlAmount.text!.elementsEqual("0")) {
-            trtlAmount.text! = numString;
+            if (Int(numString)! > GlobalVariables.totalTrtl) {
+                trtlAmount.text! = String(GlobalVariables.totalTrtl)
+            } else {
+                trtlAmount.text! = numString;
+            }
             usdAmountLabel.text! = (NSDecimalNumber(string: numString).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
         } else {
-            trtlAmount.text!.append(numString);
+            let currentAmount: String = trtlAmount.text!
+            var nextAmount: String = currentAmount + numString
+            if (Int(nextAmount)! > GlobalVariables.totalTrtl) {
+                nextAmount = String(GlobalVariables.totalTrtl)
+            }
+            trtlAmount.text! = nextAmount
             usdAmountLabel.text! = (NSDecimalNumber(string: trtlAmount.text!).multiplying(by: self.usdPerTrtl)).rounding(accordingToBehavior: self.handler).stringValue
         }
     }

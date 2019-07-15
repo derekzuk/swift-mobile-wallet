@@ -15,7 +15,6 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var trtlWalletQuantity: UILabel!
     
-    var address: String = "TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
     var transactions = [Transaction]()
     var transactionsFromApi = [TransactionFromApi]()
     var addresses = [String]()
@@ -51,9 +50,10 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             
             // TODO: Get address
             
-            self.getBalanceByAddress(address: self.address, completion: {(quantity) in
+            self.getBalanceByAddress(address: GlobalVariables.address, completion: {(quantity) in
                 DispatchQueue.main.async {
                     self.trtlWalletQuantity.text = quantity + " TRTL"
+                    GlobalVariables.totalTrtl = Int(quantity)!
                 }
             })
             
@@ -116,7 +116,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             }
         })
         
-        self.getBalanceByAddress(address: self.address, completion: {(quantity) in
+        self.getBalanceByAddress(address: GlobalVariables.address, completion: {(quantity) in
             DispatchQueue.main.async {
                 self.trtlWalletQuantity.text = quantity + " TRTL"
             }
@@ -126,24 +126,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: Private Methods
     
-    private func loadTestTransactions() {
-        guard let transaction1 = Transaction(amount: 283719, photo: self.photo1, dateString: "1908clkcn02dj", timestamp: 12345) else {
-            fatalError("Unable to instantiate transaction1")
-        }
-        
-        guard let transaction2 = Transaction(amount: 131, photo: self.photo2, dateString: "cms93jcls832", timestamp: 12345) else {
-            fatalError("Unable to instantiate transaction2")
-        }
-        
-        guard let transaction3 = Transaction(amount: 91239, photo: self.photo1, dateString: "ck83nclls8", timestamp: 12345) else {
-            fatalError("Unable to instantiate transaction3")
-        }
-        
-        transactions += [transaction1, transaction2, transaction3]
-    }
-    
     private func openWallet(completion: @escaping () -> Void) {
-        let urlString = "http://127.0.0.1:8070/wallet/open"
+        let urlString = GlobalVariables.hostAddress + "/wallet/open"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
         // prepare json data
@@ -171,7 +155,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func retrieveTransactionsFromApi(completion: @escaping () -> Void) {
-        let urlString = "http://127.0.0.1:8070/transactions"
+        let urlString = GlobalVariables.hostAddress + "/transactions"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
         request.setValue("password", forHTTPHeaderField: "X-API-KEY")
@@ -237,7 +221,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func getBalanceByAddress(address: String, completion: @escaping (String) -> Void) {
-        let urlString = "http://127.0.0.1:8070/balance/" + address
+        let urlString = GlobalVariables.hostAddress + "/balance/" + address
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
         request.setValue("password", forHTTPHeaderField: "X-API-KEY")
@@ -262,7 +246,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func retrieveAddresses() {
-        let urlString = "http://127.0.0.1:8070/addresses"
+        let urlString = GlobalVariables.hostAddress + "/addresses"
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(url: url! as URL)
         request.setValue("password", forHTTPHeaderField: "X-API-KEY")

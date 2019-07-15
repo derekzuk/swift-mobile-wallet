@@ -17,8 +17,7 @@ class ReceiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myAddressLabel.text = "TRTLv2ZheheiYNFuGj2ka2eSipa4GxxVH9VNKz9rQFsog4jMJKrt9UXPwmogxmnkLrEp3EYpzqK5hWazA7HY9MKXb5F1NccELik"
-
+        myAddressLabel.text = GlobalVariables.address
         qrCodeImage.image = generateQRCode(from: myAddressLabel.text!)
     }
     
